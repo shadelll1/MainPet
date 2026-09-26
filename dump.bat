@@ -13,6 +13,18 @@ set "BASE=%ROOT%base"
 set "SRC=%ROOT%src"
 set "LOG=%ROOT%dump.log"
 
+if not exist "%V8%" (
+    echo [FAIL] 1C platform not found: "%V8%"
+    echo        Fix the V8 path at the top of this file.
+    pause
+    exit /b 1
+)
+if not exist "%BASE%\1Cv8.1CD" (
+    echo [FAIL] Infobase not found: "%BASE%". Run load.bat first.
+    pause
+    exit /b 1
+)
+
 set "MODE="
 if exist "%SRC%\ConfigDumpInfo.xml" set "MODE=-update -force"
 
@@ -21,9 +33,11 @@ echo [..] Dumping configuration to "%SRC%" %MODE%
 if errorlevel 1 goto fail
 
 echo [OK] Configuration dumped
+pause
 exit /b 0
 
 :fail
 echo [FAIL] See "%LOG%"
-type "%LOG%"
+if exist "%LOG%" type "%LOG%"
+pause
 exit /b 1
