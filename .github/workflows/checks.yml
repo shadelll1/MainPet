@@ -1,0 +1,46 @@
+name: Проверки исходников
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  sources:
+    name: Кодировка, XML, вызовы, СтрШаблон
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Проверка исходников
+        run: python3 tools/check_sources.py src
+
+  bsl-language-server:
+    name: Статический анализ BSL
+    runs-on: ubuntu-latest
+    env:
+      BSL_LS_VERSION: "1.0.7"
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Загрузка BSL Language Server
+        run: |
+          curl -sSfL -o bsl-ls.jar \
+            "https://github.com/1c-syntax/bsl-language-server/releases/download/v${BSL_LS_VERSION}/bsl-language-server-${BSL_LS_VERSION}-exec.jar"
+      - name: Анализ
+        run: |
+          mkdir -p bsl-report
+          java -Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8 -jar bsl-ls.jar --analyze \
+            --srcDir src --configuration .bsl-language-server.json \
+            --reporter json --outputDir bsl-report --silent
+      - name: Замечания уровня Error
+        run: python3 tools/bsl_report_gate.py bsl-report/bsl-json.json
+      - name: Отчет
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bsl-report
+          path: bsl-report/

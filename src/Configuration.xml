@@ -265,6 +265,7 @@
 			<Subsystem>Склад</Subsystem>
 			<Subsystem>Продажи</Subsystem>
 			<Subsystem>Администрирование</Subsystem>
+			<SessionParameter>ТекущийПользователь</SessionParameter>
 			<Role>ПолныеПрава</Role>
 			<Role>БазовыеПрава</Role>
 			<Role>Менеджер</Role>
@@ -289,11 +290,15 @@
 			<HTTPService>API</HTTPService>
 			<EventSubscription>ПроверкаДатыЗапретаИзменения</EventSubscription>
 			<ScheduledJob>ЗакрытиеПросроченныхЗаказов</ScheduledJob>
+			<ScheduledJob>ПересчетСебестоимости</ScheduledJob>
 			<CommonCommand>ЗаполнитьДемоДанные</CommonCommand>
 			<CommonCommand>ЗапуститьСамопроверку</CommonCommand>
+			<CommonCommand>ПересчитатьСебестоимость</CommonCommand>
 			<Constant>ДатаЗапретаИзменения</Constant>
 			<Constant>ОсновнойСклад</Constant>
 			<Constant>СрокРезервированияДней</Constant>
+			<Constant>ГраницаПересчетаСебестоимости</Constant>
+			<Catalog>Пользователи</Catalog>
 			<Catalog>ЕдиницыИзмерения</Catalog>
 			<Catalog>Склады</Catalog>
 			<Catalog>Контрагенты</Catalog>

@@ -100,6 +100,13 @@
 		</right>
 	</object>
 	<object>
+		<name>Constant.ГраницаПересчетаСебестоимости</name>
+		<right>
+			<name>Read</name>
+			<value>true</value>
+		</right>
+	</object>
+	<object>
 		<name>HTTPService.API.URLTemplate.Остатки.Method.GET</name>
 		<right>
 			<name>Use</name>

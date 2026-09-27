@@ -19,8 +19,11 @@
 				<xr:Item xsi:type="xr:MDObjectRef">Constant.ДатаЗапретаИзменения</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Constant.ОсновнойСклад</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Constant.СрокРезервированияДней</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Constant.ГраницаПересчетаСебестоимости</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.Пользователи</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">CommonCommand.ЗаполнитьДемоДанные</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">CommonCommand.ЗапуститьСамопроверку</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonCommand.ПересчитатьСебестоимость</xr:Item>
 			</Content>
 		</Properties>
 		<ChildObjects/>
